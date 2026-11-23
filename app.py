@@ -8,7 +8,7 @@ def hello():
 
 @app.get("/health")
 def health():
-    return "broken"
+    return "ok"
 
 # СЛОВАРЬ
 service_states = {"ssh": "running", "NetworkManager": "stopped"}
