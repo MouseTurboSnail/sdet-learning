@@ -38,6 +38,8 @@ def test_get_ssh_status(client):
 def test_unknown_service(client):
     response = client.get("/services/cron")
     assert response.status_code == 404
+    data = response.get_data(as_text=True)
+    assert data == "Service not found"
 
 @pytest.mark.parametrize("status", ["stopped", "running"])
 def test_create_service(client, status):
