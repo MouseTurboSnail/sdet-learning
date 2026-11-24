@@ -98,3 +98,9 @@ def test_delete_service(client):
 def test_delete_unknown_service(client):
     responce = client.delete("/services/cron")
     assert responce.status_code == 404
+
+def test_create_service_with_empty_status(client):
+    response = client.post("/services", json={"name": "cron", "status": ""})
+    assert response.status_code == 400
+    response = client.get("/services/cron")
+    assert response.status_code == 404
