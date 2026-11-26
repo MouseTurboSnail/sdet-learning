@@ -104,3 +104,10 @@ def test_create_service_with_empty_status(client):
     assert response.status_code == 400
     response = client.get("/services/cron")
     assert response.status_code == 404
+
+def test_exersice_1(client):
+    responce = client.patch("/services/ssh", json={"status": ""})
+    assert responce.status_code == 400
+    responce = client.get("/services/ssh")
+    data = responce.get_data(as_text=True)
+    assert data == "running"

@@ -52,6 +52,8 @@ def update_service_status(service_name):
     if "status" not in data:
         return "Missing status", 400
     service_status = data["status"]
+    if service_status == "":
+        return "Empty status", 400
     service_states[service_name] = service_status
     return "Service updated", 200
 
