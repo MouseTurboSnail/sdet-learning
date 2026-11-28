@@ -1,12 +1,13 @@
-name: Tests
-on: push
+name: Tests           # Название, которое ты видишь во вкладке Actions
+on: push              # Когда запускать: после git push
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+  test:               # Задание с именем test
+    runs-on: ubuntu-latest   # GitHub выделяет машину с Ubuntu
+    steps:            # Дальше — шаги по порядку
+      - uses: actions/checkout@v7       # Получить код отправленного коммита
+      - uses: actions/setup-python@v7   # Подготовить Python
         with:
-          python-version: '3.12'
-      - run: python -m pip install -r requirements.txt
-      - run: python -m pytest -v test_app.py
+          python-version: '3.12'        # Нужна версия 3.12
+      - run: python -m pip install -r requirements.txt  # Установить зависимости проекта
+      - run: python -m ruff check app.py test_app.py    # Запускать проверку ruff
+      - run: python -m pytest -v test_app.py            # Запустить тесты из test_app.py
