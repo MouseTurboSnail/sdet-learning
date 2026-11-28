@@ -35,6 +35,8 @@ def create_service():
         return "Missing name", 400
     service_name = data['name']
     service_status = data["status"]
+    if service_name == "":
+        return "Empty name", 400
     if service_status == "":
         return "Empty status", 400
     if service_name in service_states:

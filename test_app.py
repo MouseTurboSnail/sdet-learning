@@ -111,3 +111,7 @@ def test_exersice_1(client):
     responce = client.get("/services/ssh")
     data = responce.get_data(as_text=True)
     assert data == "running"
+
+def test_create_service_with_empty_name(client):
+    responce = client.post("/services", json={"name": "", "status": "running"})
+    assert responce.status_code == 400
