@@ -1,5 +1,7 @@
-from app import app
 import pytest
+
+from app import app
+
 
 @pytest.fixture
 def client(monkeypatch):
@@ -29,7 +31,6 @@ def test_get_services(client):
 def test_get_ssh_status(client):
     responce = client.get("/services/ssh")
     assert responce.status_code == 200
-    #
     data = responce.get_data(as_text=True)
     assert data == "running"
     # ИЛИ одной строкой без data
